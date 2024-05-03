@@ -101,7 +101,17 @@ find_library(LIBSODIUM libsodium.a)
 find_library(LIBMBEDTLS libmbedtls.a)
 find_library(LIBMBEDCRYPTO libmbedcrypto.a)
 find_library(LIBEV libev.a)
-find_library(LIBUDNS libcares.a)
+
+if(LSB_RELEASE_ID_SHORT STREQUAL "Ubuntu")
+        IF(DPKG_RELEASE_EXEC_VERSION STREQUAL "1.27.0-1.0ubuntu1")
+                message(STATUS "patching libcares searching on Ubuntu 24.04...")
+                find_library(LIBUDNS libcares_static.a)
+        else()
+                find_library(LIBUDNS libcares.a)
+        endif()
+else()
+        find_library(LIBUDNS libcares.a)
+endif()
 find_library(LIBPCRE libpcre.a)
 
 # Dependencies we need for static and shared
