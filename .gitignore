@@ -98,3 +98,11 @@ doc/*.html
 # Visual Studio Code
 .vscode/*
 .devcontainer/*
+
+# ignore build dependcy
+libsodium-*.tar.gz
+mbedtls-*.tar.gz
+libsodium-stable/
+mbedtls-mbedtls-2.6.0/
+
+
